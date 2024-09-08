@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilet Al</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.7); 
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            margin: 20px auto;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+        }
+
+        .countdown-container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #countdown {
+            font-size: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #countdown span {
+            display: inline-block;
+            min-width: 50px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: 5px;
+        }
+
+       
+        #days, #hours, #minutes, #seconds {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bilet-body">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="oyuncular.html">Oyuncular</a></li>
+                <li><a href="antrenorler.html">Antrenörler</a></li>
+                <li><a href="sponsorlar.html">Sponsorlar</a></li>
+                <li><a href="rakipler.html">Rakipler</a></li>
+                <li><a href="bilet.html">Bilet Al</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+    <div class="countdown-container">
+        <h2>Bir sonraki maça kalan süre:</h2>
+        <div id="countdown">
+            <span id="days"></span> Gün 
+            <span id="hours"></span> Saat 
+            <span id="minutes"></span> Dakika 
+            <span id="seconds"></span> Saniye
+        </div>
+    </div>
+
+    <main>
+        <div class="fikstur-container">
+            <h2>Maç Takvimi</h2>
+            <div class="fikstur-list">
+                <div class="fikstur-card">
+                    <div class="fikstur-card-inner">
+                        <div class="fikstur-card-front">
+                            <p>12.09.2024 - PSG vs Marsilya</p>
+                        </div>
+                        <div class="fikstur-card-back">
+                            <img src="1484304.jpg" alt="Marsilya">
+                        </div>
+                    </div>
+                </div>
+                <div class="fikstur-card">
+                    <div class="fikstur-card-inner">
+                        <div class="fikstur-card-front">
+                            <p>18.09.2024 - Lyon vs PSG</p>
+                        </div>
+                        <div class="fikstur-card-back">
+                            <img src="psg-lyon_1t58reh74jwo71pp1f4pcs8rp9.png" alt="Lyon">
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+
+        <div class="bilet-container">
+            <h1>Bilet Al</h1>
+            <img src="prix-billet-psg-barcelone.jpg" alt="Stadium" class="stadium-img">
+            <div class="tribun-secimleri">
+                <button onclick="showOptions('Borelli')">Borelli Tribünleri (J, K, L, M)</button>
+                <button onclick="showOptions('Boulogne')">Boulogne Tribünleri (N, O, P, V)</button>
+                <button onclick="showOptions('Paris')">Paris Tribünleri (G, F, E, D, C, B, A)</button>
+                <button onclick="showOptions('Auteuil')">Auteuil Tribünleri (H, I)</button>
+            </div>
+            <div id="message" class="message"></div>
+            
+            <div id="seat-selection" class="seat-selection" style="display:none;">
+                <h2>Koltuk Seçimi</h2>
+                <label for="block">Blok Harfi:</label>
+                <input type="text" id="block" name="block" placeholder="Örn: J">
+                <label for="seat-number">Koltuk Numarası:</label>
+                <input type="number" id="seat-number" name="seat-number" placeholder="Örn: 12">
+                <button onclick="purchaseTicket()">Satın Al</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Paris Saint-Germain © 2024</p>
+    </footer>
+
+    <script>
+        function showOptions(tribunName) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `Talebiniz alınmıştır. ${tribunName} tribününden koltuk rezerve edilmiştir.`;
+            messageDiv.style.display = 'block';
+
+            const seatSelectionDiv = document.getElementById('seat-selection');
+            seatSelectionDiv.style.display = 'block';
+            seatSelectionDiv.dataset.tribunName = tribunName;
+        }
+
+        function purchaseTicket() {
+            const seatSelectionDiv = document.getElementById('seat-selection');
+            const tribunName = seatSelectionDiv.dataset.tribunName;
+            const block = document.getElementById('block').value;
+            const seatNumber = document.getElementById('seat-number').value;
+
+            if (block && seatNumber) {
+                alert(`Bilet alındı! ${tribunName} tribününden, Blok ${block}, Koltuk No: ${seatNumber}`);
+            } else {
+                alert('Lütfen blok harfini ve koltuk numarasını girin.');
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextMatchDate = new Date("September 12, 2024 20:00:00").getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = nextMatchDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown").innerText = "Maç başladı!";
+                }
+            }
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>

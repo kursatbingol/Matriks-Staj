@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geçmişten Bugüne Antrenörler</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="antrenorler-body">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="oyuncular.html">Oyuncular</a></li>
+                <li><a href="antrenorler.html">Antrenörler</a></li>
+                <li><a href="sponsorlar.html">Sponsorlar</a></li>
+                <li><a href="rakipler.html">Rakipler</a></li>
+                <li><a href="bilet.html">Bilet Al</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="coach-card">
+            <button class="arrow left-arrow" onclick="prevCoach()">&#8249;</button>
+            <div class="coach-info-container">
+                <div class="coach-slide active">
+                    <img src="Luis.webp" alt="Luis Enrique" class="coach-image">
+                    <div class="coach-info">
+                        <h2>Luis Enrique</h2>
+                        <p>Luis Enrique Martínez García, İspanyol teknik direktör ve eski millî futbolcu. Paris Saint-Germain'i çalıştırmaktadır. Futbolcu olarak Luis Enrique, çok yönlü bir oyuncuydu ve Real Madrid ile Barcelona'da oynadı.</p>
+                    </div>
+                </div>
+                <div class="coach-slide">
+                    <img src="Pochettino.jpg" alt="Mauricio Pochettino" class="coach-image">
+                    <div class="coach-info">
+                        <h2>Mauricio Pochettino</h2>
+                        <p>Mauricio Pochettino, Arjantinli teknik direktör ve eski futbolcu. 2021-2022 yılları arasında Paris Saint-Germain'i çalıştırmıştır. Daha önce Tottenham Hotspur ve Southampton gibi takımları da yönetti.</p>
+                    </div>
+                </div>
+                <div class="coach-slide">
+                    <img src="Tuchel.jpg" alt="Thomas Tuchel" class="coach-image">
+                    <div class="coach-info">
+                        <h2>Thomas Tuchel</h2>
+                        <p>Thomas Tuchel, Alman teknik direktör. 2018-2020 yılları arasında Paris Saint-Germain'i çalıştırdı ve 2020 yılında Şampiyonlar Ligi finaline ulaştı.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow right-arrow" onclick="nextCoach()">&#8250;</button>
+        </div>
+        <div class="wiki-button-container">
+            <a href="https://tr.wikipedia.org/wiki/Paris_Saint-Germain_FC" target="_blank" class="wiki-button">PSG Vikipedi</a>
+        </div>
+    </main>
+    <footer>
+        <p>Paris Saint-Germain © 2024</p>
+    </footer>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.coach-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextCoach() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevCoach() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Otomatik slayt gösterisi
+        setInterval(nextCoach, 5000); 
+
+       
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

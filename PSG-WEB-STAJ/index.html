@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSG Anasayfa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="homepage-body">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="oyuncular.html">Oyuncular</a></li>
+                <li><a href="antrenorler.html">Antrenörler</a></li>
+                <li><a href="sponsorlar.html">Sponsorlar</a></li>
+                <li><a href="rakipler.html">Rakipler</a></li>
+                <li><a href="bilet.html">Bilet Al</a></li>
+            </ul>
+        </nav>
+      
+        <button id="theme-switcher" class="theme-switcher-btn">Temayı Değiştir</button>
+    </header>
+    
+  
+    <div id="info-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h2>Paris Saint-Germain FC Hakkında</h2>
+            <p>1970 yılında kurulan Paris takımı, ilk büyük başarısını 1982 yılında Fransa Kupasını kazanarak yakalamış, 1986 yılında da ilk Ligue 1 şampiyonluğunu yaşamıştır. 90'lı yıllar PSG tarihinin en başarılı dönemidir; 2. kez lig şampiyonluğu, 3 Fransız kupası, 2 lig kupası, 2 Fransa süper kupası ve Kupa Galipleri Kupası bu dönemde kazanılmıştır. 1974 yılından itibaren Ligue 1'de oynamaya başlayan PSG, 12 defa Ligue 1 şampiyonluğu, 14 defa Coupe de France şampiyonluğu, 9 defa Coupe de la Ligue, 11 defa Trophée des champions şampiyonluğu, 1 defa Ligue 2 şampiyonluğu, 1 defa UEFA Kupa Galipleri Kupası şampiyonluğu ve 1 defa da UEFA Intertoto Kupası kazandı. PSG, Fransa'daki en başarılı üç kulüpten birisidir ve Avrupa'da üç büyük UEFA turnuvasından bir tanesini kazanma başarısı gösteren (Marsilya ile) iki Fransız kulübünden birisidir.</p>
+        </div>
+    </div>
+    
+    <main>
+        <div class="login-form">
+            <h2>Kullanıcı Girişi</h2>
+            <form action="bilet.html" method="get">
+                <label for="username">Kullanıcı Adı:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Şifre:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Giriş Yap</button>
+            </form>
+        </div>
+        <div class="register-form">
+            <h2>Hesap Oluştur</h2>
+            <form onsubmit="showMessage(event)">
+                <label for="new-username">Kullanıcı Adı:</label>
+                <input type="text" id="new-username" name="new-username" required>
+                <label for="new-password">Şifre:</label>
+                <input type="password" id="new-password" name="new-password" required>
+                <label for="confirm-password">Şifreyi Onayla:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <button type="submit">Hesap Oluştur</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>Paris Saint-Germain © 2024</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/psg/" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30">
+            </a>
+            <a href="https://www.facebook.com/PSG/" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30" height="30">
+            </a>
+            <a href="https://twitter.com/PSG_inside" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter" width="30" height="30">
+            </a>
+        </div>
+    </footer>
+    <script>
+
+        window.onload = function() {
+            var popup = document.getElementById("info-popup");
+            var closeBtn = document.querySelector(".close-popup");
+
+            // Popup'ı göster
+            popup.style.display = "block";
+
+            
+            closeBtn.onclick = function() {
+                popup.style.display = "none";
+            }
+
+            
+            window.onclick = function(event) {
+                if (event.target == popup) {
+                    popup.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
